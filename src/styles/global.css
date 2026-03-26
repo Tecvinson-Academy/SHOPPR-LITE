@@ -1,0 +1,201 @@
+/* RESET */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* COLOR SYSTEM */
+
+:root {
+  --primary: #1f2937;        /* Dark Slate */
+  --accent: #10b981;         /* Soft Green */
+  --accent-hover: #059669;
+  --background: #f3f4f6;
+  --card: #ffffff;
+  --text: #111827;
+  --border: #e5e7eb;
+}
+
+/* BODY */
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: var(--background);
+  color: var(--text);
+}
+
+/* NAVBAR */
+
+.navbar {
+  background: var(--primary);
+  color: white;
+
+  padding: 16px 40px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* NAV LINKS */
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-links a {
+  color: white;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  opacity: 0.75;
+}
+
+/* FILTER BAR */
+
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.filter-bar input,
+.filter-bar select {
+
+  padding: 10px 14px;
+
+  border-radius: 8px;
+
+  border: 1px solid var(--border);
+
+  font-size: 14px;
+
+  background: white;
+}
+
+/* PRODUCT GRID */
+
+.product-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+  gap: 22px;
+
+}
+
+/* PRODUCT CARD */
+
+.product-card {
+
+  background: var(--card);
+
+  padding: 16px;
+
+  border-radius: 14px;
+
+  border: 1px solid var(--border);
+
+  transition: 0.25s;
+
+}
+
+.product-card:hover {
+
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 10px 20px rgba(0,0,0,0.06);
+
+}
+
+/* IMAGE */
+
+.product-image {
+
+  width: 100%;
+  height: 180px;
+
+  object-fit: cover;
+
+  border-radius: 10px;
+
+}
+
+/* TITLE */
+
+.product-title {
+
+  margin-top: 12px;
+
+  font-size: 15px;
+
+}
+
+/* ADD BUTTON — Calm Neutral Style */
+
+.add-btn {
+
+  background: #e5e7eb;   /* soft gray */
+
+  color: #1f2937;        /* dark text */
+
+  padding: 10px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+  transition: 0.2s;
+
+}
+
+.add-btn:hover {
+
+  background: #d1d5db;   /* darker gray */
+
+}
+
+
+.add-btn {
+
+  background: #e5e7eb;   
+  color: #1f2937;        
+
+  padding: 10px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+  transition: 0.2s;
+
+}
+
+.add-btn:hover {
+
+  background: #d1d5db;   /* darker gray */
+
+}
