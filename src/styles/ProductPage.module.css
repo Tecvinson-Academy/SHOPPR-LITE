@@ -1,0 +1,107 @@
+/* src/styles/ProductPage.module.css */
+
+.productPage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.imageContainer {
+  flex: 1 1 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageContainer img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease; /* smooth hover effect */
+}
+
+.imageContainer img:hover {
+  transform: scale(1.05); /* zoom on hover */
+}
+
+.details {
+  flex: 1 1 300px;
+}
+
+.details h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #111; /* dark product title */
+}
+
+.price {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #111; /* dark price */
+}
+
+.description {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #222; /* dark description text */
+  line-height: 1.6;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #ffbf00; /* stars color */
+}
+
+.cartControls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.qtyContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qtyBtn {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #333;
+  background-color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.qtyBtn:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.qtyContainer input {
+  width: 50px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.2rem;
+}
+
+.addToCartBtn {
+  padding: 0.5rem 1rem;
+  background-color: #333; /* dark button */
+  color: #fff; /* white text */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.addToCartBtn:hover {
+  background-color: #555;
+}

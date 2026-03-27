@@ -1,27 +1,12 @@
-import { Link } from "react-router-dom";
+import { useLocation, Link } from 'react-router-dom';
 
-function NotFoundPage() {
-
+export default function NotFoundPage() {
+  const location = useLocation();
   return (
-    <div
-      style={{
-        padding: "40px",
-        textAlign: "center"
-      }}
-    >
-
-      <h1>404 🚫</h1>
-
-      <p>
-        Page not found.
-      </p>
-
-      <Link to="/">
-        Go Home
-      </Link>
-
+    <div>
+      <h1>404 Not Found</h1>
+      <p>No match for <code>{location.pathname}</code></p>
+      <Link to="/">Go Home</Link>
     </div>
   );
 }
-
-export default NotFoundPage;

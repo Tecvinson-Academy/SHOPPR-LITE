@@ -1,55 +1,28 @@
-import React from "react";
+// src/components/ProductCard.jsx
 import { Link } from "react-router-dom";
-import { useCart } from "../context/CartContext";
+import styles from "../styles/ProductCard.module.css";
 
-function ProductCard({ product }) {
-  const { addToCart } = useCart();
-
-  const handleAddToCart = () => {
-    addToCart(product);
-  };
-
+export default function ProductCard({ product, handleAdd }) {
   return (
-    <div
-      style={{
-        border: "1px solid #ddd",
-        borderRadius: "8px",
-        padding: "15px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        backgroundColor: "#fff",
-      }}
-    >
-      <Link to={`/product/${product.id}`}>
-        <img
-          src={product?.thumbnail || "/assets/logo.png"}
-          alt={product?.title || "Product Image"}
-          style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "6px" }}
-        />
+    <div className={styles.productCard}>
+      <Link to={`/product/${product.id}`} className={styles.link}>
+        <div className={styles.imageWrapper}>
+          <img
+            src={product.image || product.thumbnail}
+            alt={product.title}
+            className={styles.productImage}
+          />
+        </div>
+        <h3 className={styles.title}>{product.title}</h3>
+        <p className={styles.price}>${product.price}</p>
       </Link>
-      <div style={{ marginTop: "10px", flexGrow: 1 }}>
-        <h3 style={{ fontSize: "1rem", margin: "5px 0" }}>{product?.title || "Untitled"}</h3>
-        <p style={{ fontWeight: "bold", margin: "5px 0", color: "#444" }}>
-          ${((product?.price ?? 0)).toFixed(2)}
-        </p>
-      </div>
+
       <button
-        onClick={handleAddToCart}
-        style={{
-          backgroundColor: "rgba(54, 95, 125, 0.8)",
-          color: "#fff",
-          border: "none",
-          borderRadius: "6px",
-          padding: "10px",
-          cursor: "pointer",
-          marginTop: "10px",
-        }}
+        className={styles.addToCartBtn}
+        onClick={() => handleAdd(product)}
       >
         Add to Cart
       </button>
     </div>
   );
 }
-
-export default ProductCard;

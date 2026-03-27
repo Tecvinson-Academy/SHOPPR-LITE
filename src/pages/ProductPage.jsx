@@ -1,55 +1,94 @@
-import React from "react";
-import { Link } from "react-router-dom";
+// src/pages/ProductPage.jsx
+import { useParams } from "react-router-dom";
+import { useState } from "react";
+import useFetch from "../hooks/useFetch";
 import { useCart } from "../context/CartContext";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function ProductCard({ product }) {
+import styles from "../styles/ProductPage.module.css";
+import Loader from "../components/Loader";
+
+export default function ProductPage() {
+  const { id } = useParams();
+  const { data: product, loading, error } = useFetch(
+    `https://fakestoreapi.com/products/${id}`
+  );
   const { addToCart } = useCart();
+  const [qty, setQty] = useState(1);
+
+  if (loading) return <Loader />;
+  if (error) return <div>Error loading product.</div>;
+  if (!product) return <div>Product not found.</div>;
 
   const handleAddToCart = () => {
-    addToCart(product);
+    addToCart(
+      {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        image: product.image || product.thumbnail,
+      },
+      qty
+    );
+    toast.success(`${product.title} added to cart!`, { autoClose: 2000 });
   };
 
+  const increaseQty = () => setQty((prev) => prev + 1);
+  const decreaseQty = () => setQty((prev) => (prev > 1 ? prev - 1 : 1));
+
   return (
-    <div
-      style={{
-        border: "1px solid #ddd",
-        borderRadius: "8px",
-        padding: "15px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        backgroundColor: "#fff",
-      }}
-    >
-      <Link to={`/product/${product.id}`}>
-        <img
-          src={product?.thumbnail || "/assets/logo.png"}
-          alt={product?.title || "Product Image"}
-          style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "6px" }}
-        />
-      </Link>
-      <div style={{ marginTop: "10px", flexGrow: 1 }}>
-        <h3 style={{ fontSize: "1rem", margin: "5px 0" }}>{product?.title || "Untitled"}</h3>
-        <p style={{ fontWeight: "bold", margin: "5px 0", color: "#444" }}>
-          ${((product?.price ?? 0)).toFixed(2)}
-        </p>
+    <div className={styles.productPage}>
+      <div className={styles.imageContainer}>
+        <img src={product.image || product.thumbnail} alt={product.title} />
       </div>
-      <button
-        onClick={handleAddToCart}
-        style={{
-          backgroundColor: "rgba(54, 95, 125, 0.8)",
-          color: "#fff",
-          border: "none",
-          borderRadius: "6px",
-          padding: "10px",
-          cursor: "pointer",
-          marginTop: "10px",
-        }}
-      >
-        Add to Cart
-      </button>
+
+      <div className={styles.details}>
+        <h1>{product.title}</h1>
+        <p className={styles.price}>${product.price.toFixed(2)}</p>
+        <p className={styles.description}>{product.description}</p>
+        <p>Stock: {product.stock}</p>
+
+        <div className={styles.rating}>
+          {Array.from({ length: 5 }, (_, i) => (
+            <span
+              key={i}
+              style={{
+                color: i < Math.round(product.rating?.rate || 0)
+                  ? "#ffc107"
+                  : "#ddd",
+              }}
+            >
+              ★
+            </span>
+          ))}
+          <span style={{ marginLeft: "8px" }}>
+            {(product.rating?.rate || 0).toFixed(1)}
+          </span>
+        </div>
+
+        {/* QUANTITY + ADD TO CART */}
+        <div className={styles.cartControls}>
+          <div className={styles.qtyContainer}>
+            <button onClick={decreaseQty} className={styles.qtyBtn}>
+              -
+            </button>
+            <input
+              type="number"
+              min="1"
+              value={qty}
+              onChange={(e) => setQty(Number(e.target.value))}
+            />
+            <button onClick={increaseQty} className={styles.qtyBtn}>
+              +
+            </button>
+          </div>
+
+          <button onClick={handleAddToCart} className={styles.addToCartBtn}>
+            Add to Cart
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
-
-export default ProductCard;

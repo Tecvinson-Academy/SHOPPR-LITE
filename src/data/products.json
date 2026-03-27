@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Stylish Sneakers",
+    "price": 79.99,
+    "image": "/images/sneakers.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Classic Watch",
+    "price": 199.99,
+    "image": "/images/watch.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Leather Jacket",
+    "price": 249.99,
+    "image": "/images/jacket.jpg"
+  }
+]
